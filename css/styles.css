@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+* {
+	font-family: 'Poppins', sans-serif;
+}
+
+/* Template stylesheet */
+
+.table {
+	width: 100%;
+	border-collapse: collapse;
+	border: 1px solid #eee;
+	font-family: sans-serif;
+	margin-top: 20px;
+	box-shadow: 0 1px 1px #666;
+}
+.table thead {
+	border-bottom: 1px solid #ddd;
+}
+.table tr th {
+	padding: 1rem;
+	text-align: left;
+	color: #444;
+}
+.table tr td {
+	padding: .8rem;
+	color: #666;
+	border-bottom: 1px solid #ddd;
+}
+
+.float-left {
+	float: left;
+}
+.search-card {
+	width: 330px;
+}
+.float-right {
+	float: right;
+}
+.clearfix {
+	clear: both;
+}
+.form-control {
+	height: 36px;
+	width: 100%;
+	border-radius: 4px;
+	border: none;
+	outline: none;
+	border-bottom: 2px solid #ccc;
+	padding: 0px 10px;
+	transition: .5s;
+}
+
+.form-control:focus {
+	border-bottom: 2px solid #aaa;
+}
+
+.sort-div {
+	position: relative;
+}
+.sort-div span {
+	position: absolute;
+	top: 3px;
+	right: 0;
+	pointer-events: none;
+}
+.arrow {
+	font-size: 1.3rem;
+	color: #666;
+	margin-right: .5rem;
+	font-weight: 400;
+	cursor: pointer;
+}
+.arrow:hover {
+	color: #222;
+}
+.select {
+	padding: .5rem 1rem;
+	border: none;
+	width: 100px;
+	border-bottom: 2px solid #ccc;
+	outline: none;
+	-webkit-appearance: none;
+}
