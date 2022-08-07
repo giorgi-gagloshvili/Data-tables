@@ -6,16 +6,13 @@ const Filters = {
 	pageInit: 0,
 	start: null,
 	end: null,
+	searchResult: '',
+	totalPages: Math.ceil(data.length / this.perPage),
 
 	init() {
 		this.setStart()
 		this.setEnd()
-		this.renderPagin(this.start, this.end)
-	},
-
-	// getter methods
- 	totalPages() {
-		return Math.ceil(this.data.length / this.perPage)
+		this.render(this.start, this.end, this.data)
 	},
 
 	// setter methods
@@ -29,70 +26,13 @@ const Filters = {
 
 	// Methods
 	searchMethod() {
-		let val = document.getElementById("search").value
-		let d = this.data.filter(item => item.first_name.toLowerCase().indexOf(val.toLowerCase()) !== -1)
-		
-		let container = document.getElementById("data-tables")
-		let content = ""
-
-		// let sel = parseInt(document.getElementById("sel").value)
-
-		// console.log(d)
-		if(val !== "") {
-			for(let i = 0; i < this.perPage; i++) {
-				if(i < d.length) {
-					content += "<tr>"
-					content += `<td>${d[i].first_name}</td>`
-					content += `<td>${d[i].last_name}</td>`
-					content += `<td>${d[i].position}</td>`
-					content += `<td>${d[i].salary}</td>`
-					content += `<td>${d[i].age}</td>`
-					content += `</tr>`
-				
-				}	
-			}
-			this.rawCounter(d.length)
-		} else {
-			for(let i = 0; i < this.perPage; i++) {
-				if(i < this.data.length) {
-					content += "<tr>"
-					content += `<td>${this.data[i].first_name}</td>`
-					content += `<td>${this.data[i].last_name}</td>`
-					content += `<td>${this.data[i].position}</td>`
-					content += `<td>${this.data[i].salary}</td>`
-					content += `<td>${this.data[i].age}</td>`
-					content += `</tr>`
-				}
-			}
-			this.rawCounter(this.data.length)
-		}
-		
-		container.innerHTML = content
-		
+		this.searchResult = document.getElementById("search").value
+		this.init()		
 	},
 
 	sort() {
 		this.perPage = parseInt(document.getElementById("sel").value)
-		let container = document.getElementById("data-tables")
-		let content = ""
-		// console.log(this.perPage)
-
-		for(let i = 0; i < this.perPage; i++) {
-			if(i < this.data.length) {
-				content += "<tr>"
-				content += `<td>${this.data[i].first_name}</td>`
-				content += `<td>${this.data[i].last_name}</td>`
-				content += `<td>${this.data[i].position}</td>`
-				content += `<td>${this.data[i].salary}</td>`
-				content += `<td>${this.data[i].age}</td>`
-				content += `</tr>`
-			}
-		}
-		container.innerHTML = content
-		if(this.perPage > this.data.length)
-			this.perPage = this.data.length
-		this.rawCounter(1, this.perPage, this.data.length)
-
+		this.init()
 	},
 
 	rawCounter(start, end, total) {
@@ -101,46 +41,48 @@ const Filters = {
 		rawCount.textContent = `${start} - ${end} of ${total}`
 	},
 
-	renderPagin(start, end) {
+	render(start, end, data) {
 		let container = document.getElementById("data-tables")
 		let content = ""
+		// console.log(data, start, end, 'RENDER')
 
-		// console.log(this.start, this.end)
+		if(this.searchResult !== '') {
+			data = data.filter(item => item.first_name.toLowerCase().indexOf(this.searchResult.toLowerCase()) !== -1)
+		}
 
 		for(let i = start; i < end; i++) {
-			if(i < this.data.length) {
+			if(i < data.length) {
 				content += "<tr>"
-				content += `<td>${this.data[i].first_name}</td>`
-				content += `<td>${this.data[i].last_name}</td>`
-				content += `<td>${this.data[i].position}</td>`
-				content += `<td>${this.data[i].salary}</td>`
-				content += `<td>${this.data[i].age}</td>`
+				content += `<td>${data[i].first_name}</td>`
+				content += `<td>${data[i].last_name}</td>`
+				content += `<td>${data[i].position}</td>`
+				content += `<td>${data[i].salary}</td>`
+				content += `<td>${data[i].age}</td>`
 				content += `</tr>`
 			}
 		}
 
 		container.innerHTML = content
-		if(end > this.data.length) end = this.data.length
-		this.rawCounter(start + 1, end, this.data.length)
+		this.totalPages = Math.ceil(data.length / this.perPage)
+		if(end > data.length) end = data.length
+		this.rawCounter(start + 1, end, data.length)
 	},
 
 	prevPage() {
 		if(this.pageInit === 0) return
 		this.pageInit = this.pageInit - 1
-		let start = this.pageInit * this.perPage
-		let end = parseInt(start) + parseInt(this.perPage)
-		console.log(start, end)
-		this.renderPagin(start, end)
-		this.rawCounter(start + 1, end, this.data.length)
+		this.start = this.pageInit * this.perPage
+		this.end = parseInt(this.start) + parseInt(this.perPage)
+		this.init()
 	},
+	
 	nextPage() {
-		if(this.pageInit === this.totalPages() - 1) return
+		if(this.pageInit === this.totalPages - 1) return
 		this.pageInit = this.pageInit + 1
-		let start = this.pageInit * this.perPage
-		let end = parseInt(start) + parseInt(this.perPage)
-		console.log(start, end)
-		this.renderPagin(start, end)
-		this.rawCounter(start + 1, end, this.data.length)
+		this.start = this.pageInit * this.perPage
+		this.end = parseInt(this.start) + parseInt(this.perPage)
+		this.init()
+		
 	}
 
 
