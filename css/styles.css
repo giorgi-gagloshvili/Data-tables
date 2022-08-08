@@ -1,36 +1,20 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
 
-.material-icons {
-  font-family: 'Material Icons';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;  /* Preferred icon size */
-  display: inline-block;
-  line-height: 1;
-  text-transform: none;
-  letter-spacing: normal;
-  word-wrap: normal;
-  white-space: nowrap;
-  direction: ltr;
-
-  /* Support for all WebKit browsers. */
-  -webkit-font-smoothing: antialiased;
-  /* Support for Safari and Chrome. */
-  text-rendering: optimizeLegibility;
-
-  /* Support for Firefox. */
-  -moz-osx-font-smoothing: grayscale;
-
-  /* Support for IE. */
-  font-feature-settings: 'liga';
-}
-
 * {
+	margin: 0;
+	box-sizing: border-box;	
 	font-family: 'Poppins', sans-serif;
 }
 
-/* Template stylesheet */
+html, body {
+	height: 100%;
+}
 
+.table-controls {
+	display: flex;
+	justify-content: space-between;
+	padding: 0 1rem;
+}
 .table {
 	width: 100%;
 	border-collapse: collapse;
@@ -38,6 +22,7 @@
 	font-family: sans-serif;
 	margin-top: 20px;
 	box-shadow: 0 1px 1px #666;
+	overflow-x: auto;
 }
 .table thead {
 	border-bottom: 1px solid #ddd;
@@ -53,17 +38,9 @@
 	border-bottom: 1px solid #ddd;
 }
 
-.float-left {
-	float: left;
-}
+
 .search-card {
 	width: 330px;
-}
-.float-right {
-	float: right;
-}
-.clearfix {
-	clear: both;
 }
 .form-control {
 	height: 36px;
@@ -104,6 +81,12 @@
 	border: none;
 	width: 100px;
 	border-bottom: 2px solid #ccc;
+	height: 36px;
 	outline: none;
 	-webkit-appearance: none;
+}
+
+.table-footer {
+	display: flex;
+	padding: 0 1rem;
 }
