@@ -15,6 +15,9 @@ html, body {
 	justify-content: space-between;
 	padding: 0 1rem;
 }
+.table-container {
+	overflow-x: auto;
+}
 .table {
 	width: 100%;
 	border-collapse: collapse;
@@ -25,17 +28,20 @@ html, body {
 	overflow-x: auto;
 }
 .table thead {
-	border-bottom: 1px solid #ddd;
+	
 }
-.table tr th {
-	padding: 1rem;
+.table th, .table td {
+	white-space: nowrap;
+	border-bottom: 1px solid #ddd;
 	text-align: left;
+}
+.table  th {
+	padding: 1rem;
 	color: #444;
 }
 .table tr td {
 	padding: .8rem;
 	color: #666;
-	border-bottom: 1px solid #ddd;
 }
 
 
@@ -89,4 +95,10 @@ html, body {
 .table-footer {
 	display: flex;
 	padding: 0 1rem;
+}
+
+@media(max-width: 640px) {
+	.search-card {
+		width: auto;
+	}
 }
